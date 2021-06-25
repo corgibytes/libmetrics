@@ -1,17 +1,14 @@
 using System;
 using ApprovalTests;
-using ApprovalTests.Reporters;
-using ApprovalTests.Reporters.TestFrameworks;
 using Xunit;
 
 namespace Corgibytes.Freshli.Lib.Test
 {
-    [UseReporter(typeof(XUnit2Reporter))]
     public class Acceptance
     {
 
-        private DateTime _testingBoundary =
-          new DateTime(2020, 01, 01, 0, 0, 0, DateTimeKind.Utc);
+        private DateTimeOffset _testingBoundary =
+          new DateTimeOffset(2020, 02, 01, 0, 0, 0, 0, TimeSpan.Zero);
 
         [Fact]
         public void RubyGemsWithGitHistory()
@@ -56,7 +53,7 @@ namespace Corgibytes.Freshli.Lib.Test
             var runner = new Runner();
             var results = runner.Run(
               "https://github.com/thoughtbot/clearance",
-              asOf: new DateTime(2020, 06, 01, 00, 00, 00, DateTimeKind.Utc)
+              asOf: new DateTimeOffset(2020, 06, 01, 00, 00, 00, 00, TimeSpan.Zero)
             );
 
             Assert.True(runner.ManifestFinder.Successful);
@@ -122,7 +119,7 @@ namespace Corgibytes.Freshli.Lib.Test
 
             var results = runner.Run(
               "https://github.com/explosion/spaCy",
-              asOf: new DateTime(2017, 6, 1, 0, 0, 0)
+              asOf: new DateTimeOffset(2017, 06, 01, 00, 00, 00, TimeSpan.Zero)
             );
 
             Assert.True(runner.ManifestFinder.Successful);
